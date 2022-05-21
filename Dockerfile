@@ -48,4 +48,6 @@ RUN set -xe; \
     # cleanup ssh
     rm -rf /root/.ssh/ lgtbot-mirai-src lgtbot-mirai-release; \
     dnf remove -y wget openssh-clients gcc-toolset-10-gcc-c++ gcc-toolset-10-libatomic-devel git cmake qt5-qtwebkit-devel gflags-devel sqlite-devel glog-devel; \
+    # rename directory name to make binary find the shared library
+    mv lgtbot-mirai lgtbot-mirai-release; \
 
