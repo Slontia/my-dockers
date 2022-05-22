@@ -38,3 +38,4 @@ jobs:
           file: ./${{ github.event.inputs.name }}/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.inputs.name }}:latest
+          no-cache: true
