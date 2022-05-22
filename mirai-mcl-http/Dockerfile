@@ -13,6 +13,13 @@ RUN set -xe; \
     chmod +x mcl; \
     # download mirai-http
     mkdir plugins; \
+    cd plugins; \
     wget https://github.com/project-mirai/mirai-api-http/releases/download/v2.5.2/mirai-api-http-v2.5.2.mirai2.jar; \
-    mkdir -p config/net.mamoe.mirai-api-http/;
+    mkdir -p config/net.mamoe.mirai-api-http/; \
+    # run mcl to update packages
+    cd ..; \
+    echo "exit" | ./mcl;
 COPY setting.yml /mcl/config/net.mamoe.mirai-api-http/
+WORKDIR /mcl
+# update auth key after first boot mcl
+ENTRYPOINT sed -i "s/1234567890/$(date +%s%N | md5sum | cut -c 1-9)/" /mcl/config/net.mamoe.mirai-api-http/setting.yml && ./mcl
