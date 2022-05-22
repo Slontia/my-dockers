@@ -1,7 +1,15 @@
-name: lgtbot-mirai
+name: build and push docker image
 
 on:
   workflow_dispatch:
+    inputs:
+      name:
+        description: 'Docker name'
+        required: true
+        type: choice
+        options:
+        - mirai-mcl-http
+        - lgtbot-mirai
 
 jobs:
   docker:
@@ -26,7 +34,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./lgtbot-mirai
-          file: ./lgtbot-mirai/Dockerfile
+          context: ./${{ github.event.inputs.name }}
+          file: ./${{ github.event.inputs.name }}/Dockerfile
           push: true
-          tags: slontia/lgtbot-mirai:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.inputs.name }}:latest
