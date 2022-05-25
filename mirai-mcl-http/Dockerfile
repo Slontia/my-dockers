@@ -4,7 +4,7 @@ RUN set -xe; \
     sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*; \
     sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*; \
     # install mcl
-    dnf install -y wget zip java-11-openjdk; \
+    dnf install -y wget zip java-11-openjdk vim; \
     mkdir mcl; \
     cd mcl; \
     wget https://github.com/iTXTech/mirai-console-loader/releases/download/v2.1.0/mcl-2.1.0.zip; \
@@ -22,4 +22,4 @@ RUN set -xe; \
 COPY setting.yml /mcl/config/net.mamoe.mirai-api-http/
 WORKDIR /mcl
 # update auth key after first boot mcl
-ENTRYPOINT sed -i "s/1234567890/$(date +%s%N | md5sum | cut -c 1-9)/" /mcl/config/net.mamoe.mirai-api-http/setting.yml && ./mcl
+ENTRYPOINT sed -i "s/1234567890/$(date +%s%N | md5sum | cut -c 1-9)/" /mcl/config/net.mamoe.mirai-api-http/setting.yml && vim /mcl/config/net.mamoe.mirai-api-http/setting.yml && ./mcl
