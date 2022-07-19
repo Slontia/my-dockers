@@ -7,9 +7,9 @@ RUN set -xe; \
     sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*; \
     # install epel for qtwebkit
     dnf install -y wget; \
-    wget https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/e/epel-release-8-15.el8.noarch.rpm; \
-    rpm -Uvh epel-release-8-15.el8.noarch.rpm; \
-    rm epel-release-8-15.el8.noarch.rpm; \
+    wget     wget https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/e/epel-release-8-16.el8.noarch.rpm; \
+    rpm -Uvh epel-release-8-16.el8.noarch.rpm; \
+    rm epel-release-8-16.el8.noarch.rpm; \
     # install dependences
     dnf install -y openssh-clients gcc-toolset-10-gcc-c++ libatomic gcc-toolset-10-libatomic-devel git cmake qt5-qtwebkit qt5-qtwebkit-devel libarchive; \
     dnf install --enablerepo=powertools -y gflags gflags-devel sqlite sqlite-devel glog glog-devel python39-devel; \
