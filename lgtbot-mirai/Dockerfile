@@ -7,7 +7,7 @@ RUN set -xe; \
     sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*; \
     # install epel for qtwebkit
     dnf install -y wget; \
-    wget     wget https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/e/epel-release-8-16.el8.noarch.rpm; \
+    wget https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/e/epel-release-8-16.el8.noarch.rpm; \
     rpm -Uvh epel-release-8-16.el8.noarch.rpm; \
     rm epel-release-8-16.el8.noarch.rpm; \
     # install dependences
